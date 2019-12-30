@@ -1,17 +1,14 @@
 package net.sytes.solovey.mongodbTest;
 
-import org.bson.BsonDocument;
-import org.bson.BsonDocumentWrapper;
-import org.bson.Document;
-import org.bson.codecs.configuration.CodecRegistry;
-import org.bson.conversions.Bson;
-
 import java.util.HashSet;
 
-public class Student implements Bson {
+public class Student {
     private String name;
     private int age;
     private HashSet<String> courses;
+
+    public Student() {
+    }
 
     public Student(String name, int age, HashSet<String> courses) {
         this.name = name;
@@ -41,10 +38,5 @@ public class Student implements Bson {
 
     public void setCourses(HashSet<String> courses) {
         this.courses = courses;
-    }
-
-    @Override
-    public <TDocument> BsonDocument toBsonDocument(Class<TDocument> aClass, CodecRegistry codecRegistry) {
-        return new BsonDocumentWrapper(this, codecRegistry.get(Document.class));
     }
 }
